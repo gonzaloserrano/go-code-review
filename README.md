@@ -17,7 +17,7 @@ An informal [Go programming language](https://go.dev/) code review guidelines in
 - [idiomatic go](https://about.sourcegraph.com/go/idiomatic-go) by Sourcegraph
 - [the zen of go](https://dave.cheney.net/2020/02/23/the-zen-of-go) by Dave Cheney
 
-## code reviewing & github
+## code reviewing, git & GitHub
 
 - the [guidelines for faster PR reviews](https://github.com/kubernetes/community/blob/master/contributors/devel/pull-requests.md#best-practices-for-faster-reviews) from the Kubernetes project are a must. A quick summary:
     - do small commits and, even better, small PRs
@@ -26,16 +26,16 @@ An informal [Go programming language](https://go.dev/) code review guidelines in
     - test and document your code
     - don't add features you don't need
 - other guidelines:
-    - [How to Write a Git Commit Message])https://cbea.ms/git-commit)
+    - [How to Write a Git Commit Message](https://cbea.ms/git-commit)
+    - [Use a global .gitignore](https://gist.github.com/subfuzion/db7f57fff2fb6998a16c) to avoid coupling personal environment's files. Use a [.gitignore generator](https://github.com/toptal/gitignore) when possible.
     - prefer documentation as code (example tests files) over READMEs
-    - separate the vendor updates in a different commit
     - choose a good GitHub merge strategy:
       - choose merge when:
           - multiple commits 
           - deps in different commit
       - choose squash if you just have a single commit to avoid the extra merge commit
-    - do Continuous Integration (CI) to ensure the code quality:
-        - tests are in green (`go test -race` in TravisCI or CircleCI)
+    - have a proper Continuous Integration (CI) to ensure the code quality:
+        - tests are in green (don't forget the `-race` flag)
         - new code or changes in functionality has the corresponding tests (e.g `gocovmerge` + codecov.io or coveralls.io)
 
 ## code linting
