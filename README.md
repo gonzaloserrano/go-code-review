@@ -8,7 +8,7 @@ An informal [Go programming language](https://go.dev/) code review guidelines in
 #### Google
 - [go wiki: code review comments](https://github.com/golang/go/wiki/CodeReviewComments)
 - [go doc: effective go](https://golang.org/doc/effective_go.html)
-- go proverbs: [website](https://go-proverbs.github.io/) - [talk video](https://www.youtube.com/watch?v=PAAkCSZUG1c)
+- go proverbs: [web](https://go-proverbs.github.io/) - [video](https://www.youtube.com/watch?v=PAAkCSZUG1c)
 
 #### 3rd party
 
@@ -16,6 +16,7 @@ An informal [Go programming language](https://go.dev/) code review guidelines in
 - [ultimate go design guidelines](https://github.com/ardanlabs/gotraining/blob/master/topics/go/README.md) by Ardan Labs
 - [idiomatic go](https://about.sourcegraph.com/go/idiomatic-go) by Sourcegraph
 - [the zen of go](https://dave.cheney.net/2020/02/23/the-zen-of-go) by Dave Cheney
+- [Uber's go style guide](https://github.com/uber-go/guide/blob/master/style.md)
 
 ## code reviewing, git & GitHub
 
