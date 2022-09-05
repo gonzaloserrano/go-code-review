@@ -20,7 +20,7 @@ An informal [Go programming language](https://go.dev/) code review guidelines in
 
 ## code reviewing, git & GitHub
 
-- the [guidelines for faster PR reviews](https://github.com/kubernetes/community/blob/master/contributors/devel/pull-requests.md#best-practices-for-faster-reviews) from the Kubernetes project are a must. A quick summary:
+- the [guidelines for faster PR reviews](https://github.com/kubernetes/community/blob/master/contributors/guide/pull-requests.md#best-practices-for-faster-reviews) from the Kubernetes project are a must. A quick summary:
     - do small commits and, even better, small PRs
     - use separate PRs for fixes not related with your feature
     - add a different commit for review changes so it's easy to review them instead of the whole patch
@@ -212,6 +212,7 @@ other refs:
   - **stubs** provide canned answers to calls made during the test, usually not responding at all to anything outside what's programmed in for the test.
   - **spies** are stubs that also record some information based on how they were called. One form of this might be an email service that records how many messages it was sent.
   - **mocks** are pre-programmed with expectations which form a specification of the calls they are expected to receive. They can throw an exception if they receive a call they don't expect and are checked during verification to ensure they got all the calls they were expecting.
+- de-flaking unit tests, by the [kubernetes project](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-testing/flaky-tests.md#deflaking-unit-tests)
 
 ## aws-sdk-go
 
