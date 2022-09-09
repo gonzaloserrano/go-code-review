@@ -233,3 +233,10 @@ other refs:
   - code is marginal, architecture is material: the big wins come from architecutre, do it right first.
   - mechanical sympathy: know how yoour abstractions actually work in your hardware, go makes this possible.
   - optimize for the right trade-off: optimizing for performance means trading something else
+ 
+## common nitpicks
+- how to add EOL at EOF. [See why](https://stackoverflow.com/questions/729692/why-should-text-files-end-with-a-newline/729795#729795)
+  - [VSCode](https://stackoverflow.com/questions/44704968/visual-studio-code-insert-newline-at-the-end-of-files)
+  - [Jetbrain's IDEs](https://www.jetbrains.com/help/idea/configuring-line-endings-and-line-separators.html) such as GoLand.
+  - [Sublime Text](https://www.shellhacks.com/sublime-text-add-newline-at-eof-on-save/)
+  - vim: by default it's on. [Read this](http://ftp.vim.org/vim/patches/7.4/7.4.785) to disable.
