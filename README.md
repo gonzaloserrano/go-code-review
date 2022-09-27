@@ -12,7 +12,7 @@ An informal [Go programming language](https://go.dev/) code review guidelines in
 
 #### 3rd party
 
-- [go best practices](https://peter.bourgon.org/go-best-practices-2016/) by Peter Bourgon
+- [go best practices](https://peter.bourgon.org/go-best-practices-2016/), [go for industrial programming](https://peter.bourgon.org/go-for-industrial-programming/) - [video](https://www.youtube.com/watch?v=PTE4VJIdHPg) by Peter Bourgon
 - [ultimate go design guidelines](https://github.com/ardanlabs/gotraining/blob/master/topics/go/README.md) by Ardan Labs
 - [idiomatic go](https://about.sourcegraph.com/go/idiomatic-go) by Sourcegraph
 - [the zen of go](https://dave.cheney.net/2020/02/23/the-zen-of-go) by Dave Cheney
