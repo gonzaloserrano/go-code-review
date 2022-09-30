@@ -91,30 +91,28 @@ As a formatter, I personally prefer [gofumpt: a stricter gofmt](https://github.c
 
 ## errors
 
-- coverage: at least happy path
 - [design for errors - railway oriented programming](https://hackmd.io/JwDgbGDMBmAMBGBaArMA7GRAWATARgFNFgdoRFYwATdXEAQwGNGqg===)
   - https://dave.cheney.net/2015/01/26/errors-and-exceptions-redux
 - [indent error flow: early returns](https://github.com/golang/go/wiki/CodeReviewComments#indent-error-flow)
   - [talk: keep the normal code path at a minimal indentation]( https://talks.golang.org/2014/readability.slide#27)
 - [errors shouldn't be capitalized](https://github.com/golang/go/wiki/CodeReviewComments#error-strings)
-- put tests in a different package
-    - else name the file `*_internal_test.go`
-- don't tag error messages in datadog metrics
+- prefer testing the public API of your package with the test code in a different package (`package whatever_test`)
 - modeling:
-  - don't couple tests to error messages
-  - don't do errors.New(...); model them
-  - use assert.Type in the test
-- [how to handle errors](https://www.goinggo.net/2017/05/design-philosophy-on-logging.html) by Bill K.
-  - wrap with [pkg/errors](https://github.com/pkg/errors) and log with `%v`
+  - for composition, don't use 3rd party libs [since Go 1.13](https://go.dev/blog/go1.13-errors) has wrapping built-in.
+    - for multierror support, use [hashi's lib](https://github.com/hashicorp/go-multierror) or build it yourself. Imp
+  - prefer modeling your own errors as values or types; avoid coupling tests to error messages, use `errors.Is/As` instead.
+  - prefer wrapping for returning errors you don't own (check [wrapcheck](https://github.com/tomarrell/wrapcheck) linter)
+- [error handling guidelines](https://www.goinggo.net/2017/05/design-philosophy-on-logging.html) by Bill K.
   - > Handling an error means:
     > * The error has been logged.
     > * The application is back to 100% integrity.
     > * The current error is not reported any longer.
-- an http.Handler shouldn't repeat sending an errored response more than once;  separate the domain logic from the HTTP layer.
-- don't panic, return errors - specially in libs.
+- an http.Handler shouldn't repeat sending an errored response more than once; separate the domain logic from the HTTP layer.
+- don't panic, return errors - specially in libs. For tests or main func you can panic, but use func names with `Must` prefix.
 
 ## concurrency
 
+- coverage: at least happy path. Think about important error paths too.
 - read [golang concurrency tricks](https://udhos.github.io/golang-concurrency-tricks/)
 - go makes concurrency easy enough to be dangerous [source](https://www.youtube.com/watch?v=DJ4d_PZ6Gns&t=1270s)
 - shared mutable state is the root of all evil [source](http://henrikeichenhardt.blogspot.com.es/2013/06/why-shared-mutable-state-is-root-of-all.html)
