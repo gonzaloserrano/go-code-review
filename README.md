@@ -99,7 +99,7 @@ As a formatter, I personally prefer [gofumpt: a stricter gofmt](https://github.c
 - prefer testing the public API of your package with the test code in a different package (`package whatever_test`)
 - modeling:
   - for composition, don't use 3rd party libs [since Go 1.13](https://go.dev/blog/go1.13-errors) has wrapping built-in.
-    - for multierror support, use [hashi's lib](https://github.com/hashicorp/go-multierror) or build it yourself. Imp
+    - for multierror support, use [hashi's lib](https://github.com/hashicorp/go-multierror) or build it yourself. A stdlib implementation [has beem implemented](https://github.com/golang/go/issues/53435#issuecomment-1254255280) but not published yet (as in 1.19.1).
   - prefer modeling your own errors as values or types; avoid coupling tests to error messages, use `errors.Is/As` instead.
   - prefer wrapping for returning errors you don't own (check [wrapcheck](https://github.com/tomarrell/wrapcheck) linter)
 - [error handling guidelines](https://www.goinggo.net/2017/05/design-philosophy-on-logging.html) by Bill K.
