@@ -18,6 +18,7 @@ An informal [Go programming language](https://go.dev/) code review guidelines in
 - [the zen of go](https://dave.cheney.net/2020/02/23/the-zen-of-go) by Dave Cheney
 - [Practical Go: Real world advice for writing maintainable Go programs](https://dave.cheney.net/practical-go/presentations/qcon-china.html) by Dave Cheney
 - [Uber's go style guide](https://github.com/uber-go/guide/blob/master/style.md)
+- [Awesome Go Style](https://github.com/dgryski/awesome-go-style)
 
 ## code reviewing, git & GitHub
 
