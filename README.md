@@ -5,9 +5,10 @@ An informal [Go programming language](https://go.dev/) code review guidelines in
 ## general refs
 
 
-#### Google
-- [go wiki: code review comments](https://github.com/golang/go/wiki/CodeReviewComments)
-- [go doc: effective go](https://golang.org/doc/effective_go.html)
+#### Official
+- [Style guide](https://google.github.io/styleguide/go/)
+- [code review comments](https://github.com/golang/go/wiki/CodeReviewComments)
+- [effective go](https://golang.org/doc/effective_go.html)
 - go proverbs: [web](https://go-proverbs.github.io/) - [video](https://www.youtube.com/watch?v=PAAkCSZUG1c)
 
 #### 3rd party
