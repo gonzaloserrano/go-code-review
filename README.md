@@ -56,7 +56,7 @@ As a formatter, I personally prefer [gofumpt: a stricter gofmt](https://github.c
   - see [this go-kit presentation example](https://youtu.be/NX0sHF8ZZgw?t=1344) by Peter Bourgon
   - and [Embrace the Interface](https://www.youtube.com/watch?v=xyDkyFjzFVc) video by Tomas Senart ([@tsenart](https://twitter.com/tsenart))
   - [another good blog post with examples](https://medium.com/@matryer/writing-middleware-in-golang-and-how-go-makes-it-so-much-fun-4375c1246e81)
-- example: [coupling with logger, metrics etc](https://peter.bourgon.org/go-best-practices-2016/#logging-and-instrumentation):
+- example: [coupling with logger, metrics, etc](https://peter.bourgon.org/go-best-practices-2016/#logging-and-instrumentation):
   - don't log everything, maybe using metrics is better ([blog post by @copyconstruct](https://medium.com/@copyconstruct/logs-and-metrics-6d34d3026e38))
   - [the RED method](https://www.weave.works/blog/the-red-method-key-metrics-for-microservices-architecture/) for choosing metrics.
 - [code is communication](https://talks.golang.org/2014/readability.slide#44)
@@ -72,9 +72,9 @@ As a formatter, I personally prefer [gofumpt: a stricter gofmt](https://github.c
 
 ## package design
 
-- learn and follow the stdlib design
-- packagitis: this is not PHP or Java, where you put classes wherever and then you refer to them with the namespace.
-- watch out import cycles! Go makes you think at compiler time how your types will be grouped.
+- learn and follow the stdlib design; read the official doc about [Organizing a Go module](https://go.dev/doc/modules/layout).
+- packagitis: this is not PHP or Java, where you put classes wherever and then refer to them with the namespace.
+- watch out for import cycles! Go makes you think at compiler time how your types will be grouped.
 - are the exported types needed to be exported?
   - maybe they are just used for tests
 - reduce the number of package dependencies
@@ -101,7 +101,7 @@ As a formatter, I personally prefer [gofumpt: a stricter gofmt](https://github.c
 - prefer testing the public API of your package with the test code in a different package (`package whatever_test`)
 - modeling:
   - for composition, don't use 3rd party libs [since Go 1.13](https://go.dev/blog/go1.13-errors) has wrapping built-in.
-    - for multierror support, use [hashi's lib](https://github.com/hashicorp/go-multierror) or build it yourself. A stdlib implementation [has beem implemented](https://github.com/golang/go/issues/53435#issuecomment-1254255280) but not published yet (as in 1.19.1).
+    - for multierror support, use [hashi's lib](https://github.com/hashicorp/go-multierror) or build it yourself. A stdlib implementation [has been implemented](https://github.com/golang/go/issues/53435#issuecomment-1254255280) but not published yet (as in 1.19.1).
   - prefer modeling your own errors as values or types; avoid coupling tests to error messages, use `errors.Is/As` instead.
   - prefer wrapping for returning errors you don't own (check [wrapcheck](https://github.com/tomarrell/wrapcheck) linter)
 - [error handling guidelines](https://www.goinggo.net/2017/05/design-philosophy-on-logging.html) by Bill K.
@@ -118,7 +118,7 @@ As a formatter, I personally prefer [gofumpt: a stricter gofmt](https://github.c
 - read [golang concurrency tricks](https://udhos.github.io/golang-concurrency-tricks/)
 - go makes concurrency easy enough to be dangerous [source](https://www.youtube.com/watch?v=DJ4d_PZ6Gns&t=1270s)
 - shared mutable state is the root of all evil [source](http://henrikeichenhardt.blogspot.com.es/2013/06/why-shared-mutable-state-is-root-of-all.html)
-- how protect shared mutable data
+- how to protect shared mutable data
   - with Mutex/RWMutex
     - theory in spanish: [el problema de los lectores/escritores](https://github.com/gallir/libro_concurrencia/blob/master/chapters/06-semaforos.adoc#lectores-escritores)
     - `mu sync.Mutex` over the fields it protects
@@ -126,7 +126,7 @@ As a formatter, I personally prefer [gofumpt: a stricter gofmt](https://github.c
   - or avoid sharing state and use message passing via channels
     - [channel design](https://github.com/ardanlabs/gotraining/tree/master/topics/go#channel-design)
       - suspect of buffered channels
-    - [principles of designin APIs with channels](https://www.youtube.com/watch?v=hFqXgmor74k)
+    - [principles of designing APIs with channels](https://www.youtube.com/watch?v=hFqXgmor74k)
   - or use the `atomic` pkg if your state is a primitive (`float64` for e.g)
     - that's a nice thing for testing using spies in concurrent tests for e.g
   - or use things like `sync.Once` or `sync.Map` (>= go 1.9)
@@ -164,13 +164,13 @@ As a formatter, I personally prefer [gofumpt: a stricter gofmt](https://github.c
 
 ## naming
 
-Be careful when using short names. Usually there is no prob with receivers
-names, or temporal variables like indexes in loops etc. But if your funcs
+Be careful when using short names. Usually, there is no prob with the receivers'
+names, or temporal variables like indexes in loops, etc. But if your funcs
 violate the SRP or you have many args, then you can end with many short names
-and it can make more harm than good. If understanding a var name is not
+and it can do more harm than good. If understanding a var name is not
 straightforward, use longer names.
 
-other refs:
+Other refs:
   - [avoid GetSomething getter name](https://golang.org/doc/effective_go.html#Getters)
   - [named result parameters](https://github.com/golang/go/wiki/CodeReviewComments#named-result-parameters)
   - [initialisms - ID, HTTP etc](https://github.com/golang/go/wiki/CodeReviewComments#initialisms)
@@ -181,7 +181,7 @@ other refs:
 
 - [50 Shades of Go](http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/)
 - a time.Ticker must be stopped, otherwise a goroutine is leaked
-- slices hold a referente to the underlying array as explained here and here. Slices are passed by reference, maybe you think you are returning small data but it's underlying array can be huge.
+- slices hold a reference to the underlying array as explained here and here. Slices are passed by reference, maybe you think you are returning small data but it's underlying array can be huge.
 - interfaces and nil gotcha, see the [understanding nil](https://www.youtube.com/watch?v=ynoY2xz-F8s) talk by Francesc Campoy
 
 ## tests
@@ -205,7 +205,7 @@ other refs:
 - subtests: see concurrency.
 - tags: if you have tagged some tests (e.g _// +build integration_) then you need to run your tests with -tags 
 - t.Run and t.Parallel
-  - watch out with test cases in a loop, you need probably something like `tc := tc` before
+  - watch out with test cases in a loop, you probably need something like `tc := tc` before
 - assert should have `(expected, actual)` not on the contrary
 - test doubles naming (from [the little mocker](https://8thlight.com/blog/uncle-bob/2014/05/14/TheLittleMocker.html) by Uncle Bob):
   - **dummy** objects are passed around but never actually used
@@ -227,11 +227,11 @@ other refs:
 - [Escape Analysis and Memory Profiling - Bill Kennedy @ GopherCon SG 2017](https://www.youtube.com/watch?v=2557w0qsDV0)
 - from [so you wanna go fast?](https://youtu.be/DJ4d_PZ6Gns?t=2193) talk by by Tyler Treat:
   - the stdlib provides general solutions, and you should generally use them.
-  - small, idiomatic changes can have profound performance impact.
+  - small, idiomatic changes can have a profound performance impact.
   - learn and use tools from the go toolchain to analyze the performance.
   - the performance can change a lot between go versions, review your optimizations.
-  - code is marginal, architecture is material: the big wins come from architecutre, do it right first.
-  - mechanical sympathy: know how yoour abstractions actually work in your hardware, go makes this possible.
+  - code is marginal, architecture is material: the big wins come from architecture, do it right first.
+  - mechanical sympathy: know how your abstractions work in your hardware, go makes this possible.
   - optimize for the right trade-off: optimizing for performance means trading something else
  
 ## common nitpicks
@@ -240,4 +240,4 @@ other refs:
   - [Jetbrain's IDEs](https://www.jetbrains.com/help/idea/configuring-line-endings-and-line-separators.html) such as GoLand:
     - `Preferences > Editor > General > Ensure every saved file ends with a line break`
   - [Sublime Text](https://www.shellhacks.com/sublime-text-add-newline-at-eof-on-save/)
-  - vim: by default it's on. [Read this](http://ftp.vim.org/vim/patches/7.4/7.4.785) to disable.
+  - vim: by default, it's on. [Read this](http://ftp.vim.org/vim/patches/7.4/7.4.785) to disable.
