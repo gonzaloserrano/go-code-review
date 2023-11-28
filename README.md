@@ -186,6 +186,8 @@ Other refs:
 
 ## tests
 
+First, read the [Testing on the Toilet](https://gerlacdt.github.io/posts/google-testing-toilet/) short articles by Google.
+
 - test names & scope
 - coverage
   - edge cases
