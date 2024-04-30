@@ -58,9 +58,7 @@ Other stuff:
   - And [Embrace the Interface](https://www.youtube.com/watch?v=xyDkyFjzFVc) video by Tomas Senart ([@tsenart](https://twitter.com/tsenart)).
   - [Another good blog post with examples](https://medium.com/@matryer/writing-middleware-in-golang-and-how-go-makes-it-so-much-fun-4375c1246e81).
 - Example: [Coupling with Logger, Metrics, etc](https://peter.bourgon.org/go-best-practices-2016/#logging-and-instrumentation):
-  - Don't log everything, maybe using metrics is better ([blog post by @copyconstruct](
-
-https://medium.com/@copyconstruct/logs-and-metrics-6d34d3026e38)).
+  - Don't log everything, maybe using metrics is better ([blog post by @copyconstruct](https://medium.com/@copyconstruct/logs-and-metrics-6d34d3026e38)).
   - [The RED Method](https://www.weave.works/blog/the-red-method-key-metrics-for-microservices-architecture/) for choosing metrics.
 - [Code is Communication](https://talks.golang.org/2014/readability.slide#44).
 - [API Design](https://talks.golang.org/2014/readability.slide#42)
