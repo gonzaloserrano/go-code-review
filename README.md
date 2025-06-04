@@ -128,29 +128,22 @@ Other references:
   - Or use the `atomic` pkg if your state is a primitive (`float64` for e.g.):
     - That's a nice thing for testing using spies in concurrent tests for e.g.
   - Or use things like `sync.Once` or `sync.Map` (>= Go 1.9).
-- Testing:
-  - _Good_ concurrent tests are mandatory and run with the `-race` flag.
-  - Use parallel subtests when possible to make tests run faster ([official blog post](https://blog.golang.org/subtests)).
-    - Must capture range vars! `tc := tc // capture range variable` (also see next point).
 - Watch out when:
-  - Launching goroutines inside loops, see [Using Goroutines on Loop Iteration Variables](https://github.com/golang/go/wiki/CommonMistakes#using-goroutines-on-loop-iterator-variables).
-  - Passing pointers through channels.
-  - You see the `go` keyword around without much explanation and tests:
-    - Why was it done?
-    - Is there a benchmark for that?
-  - Async fire-and-forget logic: does that function return or not a value and/or error that must be handled?
+  - [Using Goroutines on Loop Iteration Variables](https://go.dev/wiki/CommonMistakes#using-goroutines-on-loop-iterator-variables).
+  - Lack of concurrent test logic for concurrent Subject Under Tests.
+  - You see async fire-and-forget logic that does not handle errors.
+  - There isn't a clear explanation on why the concurrent code is faster than serial.
 - Goroutine Lifetime:
   - Watch out for leaks: lifetime must be always clear, e.g., terminate a `for-select` subscribing to context.Done() to finish return.
   - [More from official core review](https://github.com/golang/go/wiki/CodeReviewComments#goroutine-lifetimes).
   - [More from Dave Cheney](http://go-talks.appspot.com/github.com/davecheney/presentations/writing-high-performance-go.slide?utm_source=statuscode&utm_medium=medium#35).
 - If you write libs, leave concurrency to the caller when possible. See [Zen Of Go](https://the-zen-of-go.netlify.app/).
     - Your code will be simpler, and the clients will choose the kind of concurrency they want.
-- [Don't Expose Channels](https://about.sourcegraph.com/go/idiomatic-go/#asynchronous-apis).
-- [The Channel Closing Principle](http://www.tapirgames.com/blog/golang-channel-closing): don't close a channel from the receiver side and don't close a channel if the channel has multiple concurrent senders.
 - Refs:
+  - [Channel Axioms](https://dave.cheney.net/2014/03/19/channel-axioms)
+  - [The Channel Closing Principle](http://www.tapirgames.com/blog/golang-channel-closing): don't close a channel from the receiver side and don't close a channel if the channel has multiple concurrent senders.
   - [Pipelines and Cancellation](https://blog.golang.org/pipelines).
   - [Advanced Concurrency Patterns](https://blog.golang.org/advanced-go-concurrency-patterns).
-- Performance: 
   - Mutex contention [profiling](https://talks.golang.org/2017/state-of-go.slide#23) [tips](http://golang.rakyll.org/mutexprofile/) from Jaana B Dogan.
 
 ## HTTP
