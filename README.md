@@ -2,6 +2,8 @@
 
 An informal [Go programming language](https://go.dev/) code review guidelines index.
 
+Note: you can also check [gopilot](https://github.com/gonzaloserrano/gopilot), a similar knowledge base in the form of a [Claude Code Plugin](https://code.claude.com/docs/en/plugins).
+
 ## General References
 
 #### Official
